@@ -79,7 +79,15 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-	</dependencies>
+<!--    IntelliJ will automatically restart the app when I change code-->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-devtools</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+
+
+  </dependencies>
 
 	<build>
 		<plugins>
