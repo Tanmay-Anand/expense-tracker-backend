@@ -1,0 +1,36 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/finwise?options=-c%20TimeZone=Asia/Kolkata
+    username: finwise
+    password: "tara@1969"
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      # Use a neutral JDBC timezone to avoid surprises in timestamp handling
+      hibernate.jdbc.time_zone: UTC
+      hibernate.format_sql: true
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    # Force Flyway to use the same URL so it can't inherit any rogue timezone
+    url: jdbc:postgresql://localhost:5432/finwise?options=-c%20TimeZone=Asia/Kolkata
+    user: finwise
+    password: "tara@1969"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: never
+
+server:
+  port: 8080
+  # This key is not a real Spring Boot config; remove it to avoid confusion.
+  # timezone: Asia/Kolkata
